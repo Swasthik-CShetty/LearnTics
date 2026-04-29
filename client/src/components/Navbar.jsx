@@ -12,7 +12,7 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="brand">Study Reels</div>
+      <div className="brand">LearnTics</div>
       <div className="nav-links">
         {!user && <Link to="/login">Login</Link>}
         {!user && <Link to="/admin/login">Admin Login</Link>}

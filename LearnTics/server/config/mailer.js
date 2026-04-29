@@ -33,7 +33,7 @@ const sendTeacherVerificationEmail = async ({ to, name }) => {
     }
 
     const from = process.env.EMAIL_FROM || process.env.SMTP_USER;
-    const platformName = process.env.PLATFORM_NAME || "Study Reels";
+    const platformName = process.env.PLATFORM_NAME || "LearnTics";
     const continueUrl = `${process.env.CLIENT_URL || "http://localhost:5173"}/upload`;
 
     await activeTransporter.sendMail({

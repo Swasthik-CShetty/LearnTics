@@ -5,7 +5,7 @@ const cloudinary = require("../config/cloudinary");
 const storage = new CloudinaryStorage({
   cloudinary,
   params: async (_req, file) => ({
-    folder: "studyreels/videos",
+    folder: "learntics/videos",
     resource_type: "video",
     public_id: `reel-${Date.now()}`,
     format: file.mimetype?.split("/")?.[1] || "mp4",
