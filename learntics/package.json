@@ -1,4 +1,6 @@
 {
+  "name": "learntics",
+  "private": true,
   "scripts": {
     "dev": "npm --prefix server run dev",
     "start": "npm --prefix server run start"
