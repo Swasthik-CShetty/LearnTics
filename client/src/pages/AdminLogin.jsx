@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import { useToast } from "../components/ToastProvider";
 import { setAuth } from "../utils/auth";
 
 export default function AdminLogin() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const submit = async (e) => {
     e.preventDefault();
@@ -16,7 +18,7 @@ export default function AdminLogin() {
       setAuth(data);
       navigate("/dashboard");
     } catch (err) {
-      alert(err.response?.data?.message || "Admin login failed");
+      showToast(err.response?.data?.message || "Admin login failed", "error");
     } finally {
       setLoading(false);
     }
