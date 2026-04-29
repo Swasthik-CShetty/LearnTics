@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "npm --prefix server run dev",
+    "start": "npm --prefix server run start"
+  },
+  "dependencies": {
+    "cloudinary": "^1.41.3",
+    "multer": "^2.1.0",
+    "multer-storage-cloudinary": "^4.0.0"
+  }
+}

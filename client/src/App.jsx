@@ -8,8 +8,10 @@ import AdminLogin from "./pages/AdminLogin";
 import Login from "./pages/Login";
 import ManageContent from "./pages/ManageContent";
 import Register from "./pages/Register";
+import Settings from "./pages/Settings";
 import TopicPage from "./pages/TopicPage";
 import Upload from "./pages/Upload";
+import { ToastProvider } from "./components/ToastProvider";
 import { getToken, getUser } from "./utils/auth";
 
 function HomeRedirect() {
@@ -24,70 +26,83 @@ function HomeRedirect() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomeRedirect />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/register" element={<Register />} />
+    <ToastProvider>
+      <BrowserRouter>
+        <Navbar />
+        <main id="main-content" className="app-main">
+          <Routes>
+          <Route path="/" element={<HomeRedirect />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute roles={["student", "teacher", "admin"]}>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute roles={["student", "teacher", "admin"]}>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute roles={["admin"]}>
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/upload"
-          element={
-            <ProtectedRoute roles={["teacher"]}>
-              <Upload />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/upload"
+            element={
+              <ProtectedRoute roles={["teacher"]}>
+                <Upload />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/manage-content"
-          element={
-            <ProtectedRoute roles={["teacher"]}>
-              <ManageContent />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/manage-content"
+            element={
+              <ProtectedRoute roles={["teacher"]}>
+                <ManageContent />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/feed"
-          element={
-            <ProtectedRoute roles={["student"]}>
-              <Feed />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/feed"
+            element={
+              <ProtectedRoute roles={["student"]}>
+                <Feed />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/topic/:id"
-          element={
-            <ProtectedRoute roles={["student", "teacher"]}>
-              <TopicPage />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/topic/:id"
+            element={
+              <ProtectedRoute roles={["student", "teacher"]}>
+                <TopicPage />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </BrowserRouter>
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute roles={["student", "teacher", "admin"]}>
+                <Settings />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+        </main>
+      </BrowserRouter>
+    </ToastProvider>
   );
 }
